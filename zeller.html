@@ -119,7 +119,7 @@ h = (20 + ⌊13*(11+1)/5⌋ + 20 + ⌊20/4⌋ + ⌊20/4⌋ + 5*20) mod 7
     <h2>Fórmula para o Calendário Juliano</h2>
     <p>A versão adaptada para o calendário Juliano é:</p>
     <pre>
-h = (q + ⌊13(m+1)/5⌋ + K + ⌊K/4⌋ + 5J) mod 7
+h = (q + ⌊13(m+1)/5⌋ + K + ⌊K/4⌋ + 5 - J) mod 7
     </pre>
     <p>Observe que omitimos o termo ⌊J/4⌋.</p>
     
@@ -136,18 +136,18 @@ h = (q + ⌊13(m+1)/5⌋ + K + ⌊K/4⌋ + 5J) mod 7
         </li>
         <li><strong>Substituindo:</strong>
           <pre>
-h = (10 + ⌊13*(3+1)/5⌋ + 0 + ⌊0/4⌋ + 5*15) mod 7
-  = (10 + ⌊52/5⌋ + 0 + 0 + 75) mod 7
+h = (10 + ⌊13*(3+1)/5⌋ + 0 + ⌊0/4⌋ + 5 - 15) mod 7
+  = (10 + ⌊52/5⌋ + 0 + 0 - 10) mod 7
           </pre>
         </li>
         <li><strong>Cálculos:</strong>
           <ul>
             <li>⌊52/5⌋ = 10</li>
-            <li>Soma: 10 + 10 + 0 + 0 + 75 = 95</li>
-            <li>95 mod 7 = 95 - (7×13 = 91) = 4</li>
+            <li>Soma: 10 + 10 + 0 + 0 - 10 = 10</li>
+            <li>10 mod 7 = 3 </li>
           </ul>
         </li>
-        <li><strong>Resultado:</strong> h = 4, que corresponde a <em>Quarta-feira</em>.</li>
+        <li><strong>Resultado:</strong> h = 3, que corresponde a <em>Terça-feira</em>.</li>
       </ol>
     </div>
   </section>
