@@ -55,7 +55,7 @@
       padding: 0;
     }
     .examples li {
-      margin: 5px 0;
+      margin-bottom: 8px;
     }
     .small-link {
       font-size: 0.7em;
@@ -82,7 +82,7 @@
     <p>Bem-vindo! Este site permite calcular o dia da semana utilizando a Congruência de Zeller (para os calendários Juliano e Gregoriano) e a Doomsday Rule (para o calendário Gregoriano).</p>
   </header>
   
-  <!-- Barra de navegação com links para as páginas de explicação -->
+  <!-- Navegação com links para as páginas de explicação -->
   <nav>
     <a href="zeller.html">Congruência de Zeller</a>
     <a href="doomsday.html">Doomsday Rule</a>
@@ -103,35 +103,37 @@
     
     <h3 id="resultado"></h3>
     <p id="explicacao"></p>
+    <!-- Link para o Time and Date sempre visível -->
+    <p class="small-link"><a id="linkTimeAndDate" href="#" target="_blank">Verificar no Time and Date</a></p>
   </div>
   
   <div class="examples">
     <h2>Exemplos Históricos</h2>
     <ul>
       <li>
-        <strong>29/05/1453</strong> (Queda de Constantinopla) – 
-        <a href="https://pt.wikipedia.org/wiki/Queda_de_Constantinopla" target="_blank">Wikipedia</a>
-        [<a href="https://www.timeanddate.com/calendar/?year=1453&month=5&day=29" target="_blank">Time and Date</a>]
+        <strong>29/05/1453 (Queda de Constantinopla – Sábado)</strong> – 
+        <a href="https://pt.wikipedia.org/wiki/Queda_de_Constantinopla" target="_blank">Wikipedia</a> | 
+        <a href="https://www.timeanddate.com/calendar/?year=1453&month=5&day=29" target="_blank">Time and Date</a>
       </li>
       <li>
-        <strong>12/10/1492</strong> (Descobrimento da América) – 
-        <a href="https://pt.wikipedia.org/wiki/Descobrimento_da_Am%C3%A9rica" target="_blank">Wikipedia</a>
-        [<a href="https://www.timeanddate.com/calendar/?year=1492&month=10&day=12" target="_blank">Time and Date</a>]
+        <strong>12/10/1492 (Descobrimento da América – Quinta-feira)</strong> – 
+        <a href="https://pt.wikipedia.org/wiki/Descobrimento_da_Am%C3%A9rica" target="_blank">Wikipedia</a> | 
+        <a href="https://www.timeanddate.com/calendar/?year=1492&month=10&day=12" target="_blank">Time and Date</a>
       </li>
       <li>
-        <strong>04/06/1989</strong> (Protestos na Praça da Paz Celestial) – 
-        <a href="https://pt.wikipedia.org/wiki/Tiananmen_Square" target="_blank">Wikipedia</a>
-        [<a href="https://www.timeanddate.com/calendar/?year=1989&month=6&day=4" target="_blank">Time and Date</a>]
+        <strong>29/02/1989 (Massacre da Praça da Paz Celestial – Sexta-feira)</strong> – 
+        <a href="https://pt.wikipedia.org/wiki/Massacre_da_Pra%C3%A7a_da_Paz_Celestial_em_1989" target="_blank">Wikipedia</a> | 
+        <a href="https://www.timeanddate.com/calendar/?year=1989&month=2&day=29" target="_blank">Time and Date</a>
       </li>
       <li>
-        <strong>05/06/2013</strong> (Edward Snowden e as Revelações dos Programas de Vigilância Global) – 
-        <a href="https://pt.wikipedia.org/wiki/Edward_Snowden" target="_blank">Wikipedia</a>
-        [<a href="https://www.timeanddate.com/calendar/?year=2013&month=6&day=5" target="_blank">Time and Date</a>]
+        <strong>05/06/2013 (Edward Snowden – Início das Revelações – Quarta-feira)</strong> – 
+        <a href="https://pt.wikipedia.org/wiki/Edward_Snowden" target="_blank">Wikipedia</a> | 
+        <a href="https://www.timeanddate.com/calendar/?year=2013&month=6&day=5" target="_blank">Time and Date</a>
       </li>
       <li>
-        <strong>19/06/2012</strong> (Julian Assange e o Asilo na Embaixada do Equador) – 
-        <a href="https://pt.wikipedia.org/wiki/Julian_Assange" target="_blank">Wikipedia</a>
-        [<a href="https://www.timeanddate.com/calendar/?year=2012&month=6&day=19" target="_blank">Time and Date</a>]
+        <strong>19/06/2012 (Julian Assange – Prisão na Embaixada do Equador – Terça-feira)</strong> – 
+        <a href="https://pt.wikipedia.org/wiki/Julian_Assange" target="_blank">Wikipedia</a> | 
+        <a href="https://www.timeanddate.com/calendar/?year=2012&month=6&day=19" target="_blank">Time and Date</a>
       </li>
     </ul>
   </div>
@@ -191,7 +193,6 @@
           `A data <strong>${dia}/${mes}/${ano}</strong> está no <strong>calendário ${calendario}</strong> e caiu em <strong>${obterDiaSemana(h)}</strong>.<br>` +
           `<a href="#" onclick="alternarCalendario(${dia}, ${mes}, ${ano})">Visualizar no outro calendário</a>`;
   
-      document.getElementById("explicacao").innerHTML = "";
       atualizarLinkTimeAndDate(dia, mes, ano);
     }
   
@@ -254,7 +255,6 @@
   
       document.getElementById("resultado").innerHTML = 
           `A data equivalente no <strong>calendário ${calendario}</strong> é <strong>${novoDia}/${novoMes}/${novoAno}</strong> e caiu em <strong>${obterDiaSemana(h)}</strong>.`;
-      
       atualizarLinkTimeAndDate(novoDia, novoMes, novoAno);
     }
   

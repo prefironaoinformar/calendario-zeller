@@ -68,9 +68,6 @@
     <p>
       Uma das vantagens do método de Zeller é sua versatilidade, já que funciona para qualquer data dentro da faixa de validade dos calendários. No caso do calendário gregoriano, ele incorpora as regras modernas de anos bissextos e a reforma do Papa Gregório XIII, que corrigiu o erro acumulado do calendário juliano. Já na versão para o calendário juliano, que foi usado antes da reforma de 1582 (e ainda é empregado em algumas tradições eclesiásticas), o cálculo é ligeiramente diferente, pois esse calendário considera anos bissextos de forma mais simplificada e não tem a correção do erro acumulado ao longo dos séculos.
     </p>
-    <p>
-      Embora atualmente existam métodos computacionais que realizam esse cálculo em milissegundos, o algoritmo de Zeller continua fascinante para entusiastas da matemática recreativa, pois demonstra como padrões ocultos no calendário podem ser traduzidos em fórmulas elegantes e eficientes. Ele também é uma excelente ferramenta para quem gosta de desafios de memorização, pois, com alguma prática, permite determinar dias da semana rapidamente sem a necessidade de tabelas ou softwares.
-    </p>
   </div>
   
   <section>
@@ -113,7 +110,7 @@ h = (20 + ⌊13*(11+1)/5⌋ + 20 + ⌊20/4⌋ + ⌊20/4⌋ + 5*20) mod 7
             <li>181 mod 7 = 181 - (7×25 = 175) = 6</li>
           </ul>
         </li>
-        <li><strong>Resultado:</strong> h = 6, que corresponde a Sexta-feira.</li>
+        <li><strong>Resultado:</strong> h = 6, que corresponde a <em>Sexta-feira</em>.</li>
       </ol>
     </div>
   </section>
@@ -129,7 +126,7 @@ h = (q + ⌊13(m+1)/5⌋ + K + ⌊K/4⌋ + 5J) mod 7
     <h3>Exemplo Detalhado – Data: 10/03/1500 (Juliano)</h3>
     <div class="example">
       <ol>
-        <li><strong>Ajuste:</strong> Como março é maior que 2, usamos m = 3 e o ano permanece 1500.</li>
+        <li><strong>Ajuste:</strong> Como março > 2, usamos m = 3 e o ano permanece 1500.</li>
         <li><strong>Valores:</strong> q = 10, m = 3, ano = 1500.</li>
         <li><strong>Cálculo de K e J:</strong>
           <ul>
@@ -150,7 +147,7 @@ h = (10 + ⌊13*(3+1)/5⌋ + 0 + ⌊0/4⌋ + 5*15) mod 7
             <li>95 mod 7 = 95 - (7×13 = 91) = 4</li>
           </ul>
         </li>
-        <li><strong>Resultado:</strong> h = 4, que corresponde a Quarta-feira.</li>
+        <li><strong>Resultado:</strong> h = 4, que corresponde a <em>Quarta-feira</em>.</li>
       </ol>
     </div>
   </section>
