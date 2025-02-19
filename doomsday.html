@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>Doomsday Rule - Explicação</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background: #fff3e0;
+      font-family: "Comic Sans MS", cursive, sans-serif;
+      color: #e65100;
+      margin: 20px;
+      text-align: left;
+    }
+    header {
+      background: #ffcc80;
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+    }
+    a { color: #e65100; }
+    pre {
+      background: #ffe0b2;
+      padding: 10px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+    footer {
+      margin-top: 20px;
+      font-size: 0.8em;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Doomsday Rule</h1>
+    <p>Explicação detalhada da Doomsday Rule para o calendário Gregoriano</p>
+  </header>
+  
+  <section>
+    <h2>Conceito Básico</h2>
+    <p>A Doomsday Rule, desenvolvida por John Conway, é um método mental para calcular o dia da semana de qualquer data no calendário gregoriano. A ideia central é que certos dias (os "doomsdays") de cada mês caem sempre no mesmo dia da semana em um dado ano.</p>
+  </section>
+  
+  <section>
+    <h2>Doomsdays Mensais</h2>
+    <p>Os dias âncora (doomsdays) para cada mês no calendário gregoriano são os seguintes:</p>
+    <ul>
+      <li>Janeiro: 3 (anos comuns) ou 4 (anos bissextos)</li>
+      <li>Fevereiro: 28 (anos comuns) ou 29 (anos bissextos)</li>
+      <li>Março: 14</li>
+      <li>Abril: 4</li>
+      <li>Maio: 9</li>
+      <li>Junho: 6</li>
+      <li>Julho: 11</li>
+      <li>Agosto: 8</li>
+      <li>Setembro: 5</li>
+      <li>Outubro: 10</li>
+      <li>Novembro: 7</li>
+      <li>Dezembro: 12</li>
+    </ul>
+  </section>
+  
+  <section>
+    <h2>Algoritmo da Doomsday Rule</h2>
+    <ol>
+      <li><strong>Âncora do Século:</strong> Calcule usando:
+        <pre>
+S = (5 × (C mod 4) + 2) mod 7
+        </pre>
+        onde C é o número do século (por exemplo, para 2000–2099, C = 20).
+      </li>
+      <li><strong>Âncora do Ano:</strong> Para os dois últimos dígitos do ano (YY):
+        <ul>
+          <li>a = ⌊YY / 12⌋</li>
+          <li>b = YY mod 12</li>
+          <li>c = ⌊b / 4⌋</li>
+          <li>Doomsday do ano = (S + a + b + c) mod 7</li>
+        </ul>
+      </li>
+      <li><strong>Cálculo Final:</strong> Compare a data desejada com o doomsday mensal (conforme listado acima) e ajuste a diferença para determinar o dia da semana.</li>
+    </ol>
+  </section>
+  
+  <section>
+    <h2>Referências e Vídeos</h2>
+    <ul>
+      <li><a href="https://pt.wikipedia.org/wiki/Algoritmo_Doomsday" target="_blank">Wikipedia: Algoritmo Doomsday</a></li>
+      <li><a href="https://www.fourmilab.ch/documents/calendar/" target="_blank">Fourmilab's Calendar</a></li>
+      <li><a href="https://www.youtube.com/watch?v=sLDc3x9koGI&t=2s" target="_blank">Vídeo: Congruência de Zeller</a></li>
+      <li><a href="https://www.youtube.com/watch?v=714LTMNJy5M&t=146s" target="_blank">Vídeo: Doomsday Rule</a></li>
+    </ul>
+  </section>
+  
+  <footer>
+    <p>Página criada por ChatGPT, um large language model da OpenAI.</p>
+    <p><a href="index.html">Voltar para a Página Principal</a></p>
+  </footer>
+</body>
+</html>

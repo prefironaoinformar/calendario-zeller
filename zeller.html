@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>Congruência de Zeller - Explicação</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background: #e1f5fe;
+      font-family: "Comic Sans MS", cursive, sans-serif;
+      color: #01579b;
+      margin: 20px;
+      text-align: left;
+    }
+    header {
+      background: #81d4fa;
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+    }
+    a { color: #01579b; }
+    pre {
+      background: #b3e5fc;
+      padding: 10px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+    footer {
+      margin-top: 20px;
+      font-size: 0.8em;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Congruência de Zeller</h1>
+    <p>Explicação detalhada para os calendários Juliano e Gregoriano</p>
+  </header>
+  
+  <section>
+    <h2>Calendário Gregoriano</h2>
+    <p>A fórmula é:</p>
+    <pre>
+h = (q + ⌊13(m+1)/5⌋ + K + ⌊K/4⌋ + ⌊J/4⌋ + 5J) mod 7
+    </pre>
+    <p>Onde:</p>
+    <ul>
+      <li><strong>q</strong>: dia do mês</li>
+      <li><strong>m</strong>: mês (março=3, …, dezembro=12; janeiro e fevereiro são contados como 13 e 14 do ano anterior)</li>
+      <li><strong>K</strong>: ano do século (ano mod 100)</li>
+      <li><strong>J</strong>: século (parte inteira do ano/100)</li>
+      <li><strong>h</strong>: dia da semana (0 = sábado, 1 = domingo, 2 = segunda, ..., 6 = sexta)</li>
+    </ul>
+    <p><strong>Referência:</strong> <a href="https://pt.wikipedia.org/wiki/Congru%C3%AAncia_de_Zeller" target="_blank">Wikipedia: Congruência de Zeller</a></p>
+  </section>
+  
+  <section>
+    <h2>Calendário Juliano</h2>
+    <p>A versão adaptada para o calendário Juliano é:</p>
+    <pre>
+h = (q + ⌊13(m+1)/5⌋ + K + ⌊K/4⌋ + 5J) mod 7
+    </pre>
+    <p>Note que a diferença é a ausência do termo ⌊J/4⌋, pois o calendário Juliano não adota as correções seculares do Gregoriano.</p>
+  </section>
+  
+  <section>
+    <h2>Exemplo de Cálculo</h2>
+    <p>Para 18/02/2025 (no calendário Gregoriano):</p>
+    <ol>
+      <li>Ajuste: Fevereiro é tratado como 14 e o ano se torna 2024.</li>
+      <li>q = 18, m = 14, K = 2024 mod 100 = 24, J = 20.</li>
+      <li>
+        Substituindo:
+        <pre>
+h = (18 + ⌊13×15/5⌋ + 24 + ⌊24/4⌋ + ⌊20/4⌋ + 5×20) mod 7
+  = (18 + 39 + 24 + 6 + 5 + 100) mod 7
+  = 192 mod 7 = 3
+        </pre>
+      </li>
+      <li>3 corresponde a Terça-feira.</li>
+    </ol>
+  </section>
+  
+  <section>
+    <h2>Referências</h2>
+    <ul>
+      <li><a href="https://pt.wikipedia.org/wiki/Congru%C3%AAncia_de_Zeller" target="_blank">Wikipedia: Congruência de Zeller</a></li>
+      <li><a href="https://www.fourmilab.ch/documents/calendar/" target="_blank">Fourmilab's Calendar</a></li>
+    </ul>
+  </section>
+  
+  <footer>
+    <p>Página criada por ChatGPT, um large language model da OpenAI.</p>
+    <p><a href="index.html">Voltar para a Página Principal</a></p>
+  </footer>
+</body>
+</html>
