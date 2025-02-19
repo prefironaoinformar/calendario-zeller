@@ -59,48 +59,64 @@
       O algoritmo Doomsday Rule, criado pelo matemático John Horton Conway, é um método mental rápido para determinar o dia da semana de qualquer data no calendário gregoriano. Ele se baseia no conceito de dias “âncora” – datas específicas que sempre caem no mesmo dia da semana em qualquer ano –, permitindo calcular o dia de qualquer outra data com rapidez e precisão.
     </p>
     <p>
-      A lógica do método gira em torno do fato de que certos dias dentro de cada mês são mais fáceis de lembrar por sua regularidade. Datas como 4/4, 6/6, 8/8, 10/10, 12/12 e algumas outras são chamadas de “dias do Juízo Final” (Doomsday) porque sempre compartilham o mesmo dia da semana em um determinado ano. Ao memorizar o dia da semana correspondente ao Doomsday de um ano específico, pode-se rapidamente determinar o dia de qualquer outra data dentro desse ano, contando os dias de maneira simples.
+      A lógica do método gira em torno do fato de que certos dias dentro de cada mês são mais fáceis de lembrar por sua regularidade. Datas como 4/4, 6/6, 8/8, 10/10, 12/12 e outras são chamadas de “dias do Juízo Final” (Doomsday) porque sempre compartilham o mesmo dia da semana em um determinado ano. Ao memorizar o dia da semana correspondente ao Doomsday de um ano, pode-se rapidamente determinar o dia de qualquer outra data nesse ano, contando os dias de forma simples.
     </p>
     <p>
-      Para aplicar a regra, é necessário primeiro encontrar o Doomsday do ano desejado, o que envolve um pequeno cálculo baseado nos últimos dois dígitos do ano e em uma sequência cíclica pré-determinada. Depois de identificado o dia âncora, basta usá-lo como referência para contar os dias até a data desejada. Como o calendário segue padrões fixos e repetitivos, essa contagem se torna intuitiva com a prática.
+      Para aplicar a regra, é necessário primeiro encontrar o Doomsday do ano desejado – que envolve um pequeno cálculo com os dois últimos dígitos do ano e uma sequência cíclica pré-determinada – e depois usá-lo como referência para contar os dias até a data desejada.
     </p>
     <p>
-      A Doomsday Rule é valorizada tanto por sua utilidade prática quanto por seu charme matemático. Embora existam métodos automatizados para encontrar o dia da semana de uma data, o algoritmo de Conway permanece uma ferramenta fascinante para entusiastas da matemática e curiosos que apreciam desafios mentais e truques de cálculo rápido.
+      A Doomsday Rule é valorizada tanto por sua utilidade prática quanto pelo charme matemático que apresenta, sendo uma ferramenta fascinante para entusiastas da matemática e curiosos.
     </p>
+  </section>
+  
+  <section>
+    <h2>Anos Bissextos e Influência no Cálculo</h2>
+    <p>
+      No calendário gregoriano, um ano é bissexto se for divisível por 4, exceto se for um ano de século (terminado em 00) que não seja divisível por 400. Assim, 1900 não foi bissexto, enquanto 2000 foi. Essa regra afeta principalmente os meses de janeiro e fevereiro, pois em anos bissextos os doomsdays desses meses são 4 (janeiro) e 29 (fevereiro); já em anos não bissextos são 3 e 28, respectivamente.
+    </p>
+    <p>
+      Essa diferença é crucial para o cálculo, pois altera o ponto de referência usado para determinar o dia da semana.
+    </p>
+    <div class="example">
+      <h3>Exemplo Prático – Data: 29/02/2000</h3>
+      <ol>
+        <li><strong>Verificação de Bissexto:</strong> 2000 é bissexto (divisível por 400).</li>
+        <li><strong>Âncora do Mês:</strong> Em fevereiro de ano bissexto, o doomsday é 29.</li>
+        <li>Suponha que, após calcular a âncora do século e do ano (usando os métodos da Doomsday Rule), obtemos que o doomsday do ano 2000 é, por exemplo, 3 (quarta-feira, usando a convenção: 0 = dom, 1 = seg, 2 = ter, 3 = qua, 4 = qui, 5 = sex, 6 = sab).</li>
+        <li><strong>Cálculo:</strong> Como a data desejada é 29/02/2000, que é exatamente o doomsday de fevereiro, o dia da semana será o mesmo da âncora do ano, ou seja, quarta-feira (3).</li>
+        <li><strong>Resultado:</strong> 29/02/2000 cai em Quarta-feira.</li>
+      </ol>
+    </div>
   </section>
   
   <section>
     <h2>Passo a Passo da Doomsday Rule</h2>
     <h3>1. Obter a Âncora do Século</h3>
-    <p>Para o calendário gregoriano, a âncora do século é calculada por:</p>
     <pre>
 S = (5 × (C mod 4) + 2) mod 7
     </pre>
-    <p>Onde C é o número do século. Exemplo: para 2025 (C = 20):</p>
+    <p>Exemplo: Para 2025, C = 20:</p>
     <pre>
 S = (5 × (20 mod 4) + 2) mod 7
   = (5 × 0 + 2) mod 7
-  = 2 mod 7 = 2
+  = 2 mod 7 = 2   (2 = ter, conforme a convenção: 0=dom, 1=seg, 2=ter, etc.)
     </pre>
-    <p>Na convenção utilizada aqui, usaremos os seguintes valores para os dias da semana:  
-       0 = dom, 1 = seg, 2 = ter, 3 = qua, 4 = qui, 5 = sex, 6 = sab.</p>
     
     <h3>2. Obter a Âncora do Ano</h3>
-    <p>Utilize os dois últimos dígitos do ano (YY):</p>
     <pre>
 a = ⌊YY / 12⌋
 b = YY mod 12
 c = ⌊b / 4⌋
 Doomsday do ano = (S + a + b + c) mod 7
     </pre>
-    <p>Exemplo: para 2025 (YY = 25):</p>
+    <p>Exemplo: Para 2025 (YY = 25):</p>
     <pre>
 a = ⌊25 / 12⌋ = 2
 b = 25 mod 12 = 1
 c = ⌊1 / 4⌋ = 0
 Doomsday do ano = (2 + 2 + 1 + 0) mod 7 = 5 mod 7 = 5
     </pre>
-    <p>5, nesta convenção, corresponde a sex (sexta-feira).</p>
+    <p>Nesta convenção, 5 corresponde a sex (sexta-feira).</p>
     
     <h3>3. Determinar a Âncora do Mês</h3>
     <p>Os doomsdays mensais no calendário gregoriano são:</p>
@@ -120,40 +136,39 @@ Doomsday do ano = (2 + 2 + 1 + 0) mod 7 = 5 mod 7 = 5
     </ul>
     
     <h3>4. Cálculo do Dia da Semana</h3>
-    <p>Compare o dia da data desejada com o doomsday do mês e ajuste a diferença.</p>
+    <p>Compare o dia desejado com o doomsday do mês e ajuste a diferença (usando módulo 7).</p>
     
     <h3>Exemplo Completo – Data: 18/02/2025</h3>
     <ol>
-      <li><strong>Ajuste para Fevereiro:</strong> Em 2025, que não é bissexto, o doomsday de fevereiro é 28.</li>
+      <li><strong>Ajuste para Fevereiro:</strong> 2025 não é bissexto, então o doomsday de fevereiro é 28.</li>
       <li><strong>Âncora do Século:</strong> Para 2025, C = 20:
         <pre>
 S = (5 × (20 mod 4) + 2) mod 7
   = (5 × 0 + 2) mod 7
-  = 2
+  = 2   (2 = ter)
         </pre>
-        (2 corresponde a ter, ou seja, terça.)
       </li>
-      <li><strong>Âncora do Ano:</strong> Usando YY = 25:
+      <li><strong>Âncora do Ano:</strong> Para YY = 25:
         <pre>
 a = ⌊25 / 12⌋ = 2
 b = 25 mod 12 = 1
 c = ⌊1 / 4⌋ = 0
-Doomsday do ano = (2 + 2 + 1 + 0) mod 7 = 5
+Doomsday do ano = (2 + 2 + 1 + 0) mod 7 = 5   (5 = sex)
         </pre>
-        (5 corresponde a sex, ou seja, sexta.)
       </li>
-      <li><strong>Diferença para o Mês:</strong> Para fevereiro, o doomsday é 28. A data 18 está 10 dias antes:
+      <li><strong>Diferença no Mês:</strong> Em fevereiro, a âncora é 28. Como a data é 18:
         <pre>
 Diferença = 18 - 28 = -10
-Ajustando em módulo 7: -10 mod 7 = -3 mod 7 = 4
+Ajuste: -10 mod 7 = -3 mod 7 = 4   (equivalente a retroceder 3 dias)
         </pre>
-        Isso significa que, a partir do doomsday do ano (sexta, que é 5), retrocedemos 3 dias:
+      </li>
+      <li><strong>Cálculo Final:</strong> Partindo do doomsday do ano (sexta, 5), retroceda 3 dias:
         <pre>
 5 - 3 = 2
         </pre>
+        2, conforme nossa convenção, corresponde a ter (terça-feira).
       </li>
-      <li><strong>Resultado:</strong> 2 corresponde a ter (terça-feira) segundo a convenção:  
-          0 = dom, 1 = seg, 2 = ter, 3 = qua, 4 = qui, 5 = sex, 6 = sab.
+      <li><strong>Resultado:</strong> 18/02/2025 cai em Terça-feira.
       </li>
     </ol>
   </section>
