@@ -53,6 +53,9 @@
       list-style: none;
       padding: 0;
     }
+    .small-link {
+      font-size: 0.7em;
+    }
     .gif-container {
       margin-top: 20px;
     }
@@ -75,8 +78,8 @@
     <p>Bem-vindo! Este site permite calcular o dia da semana utilizando a Congruência de Zeller (para os calendários Juliano e Gregoriano) e a Doomsday Rule (para o calendário Gregoriano).</p>
   </header>
   
+  <!-- Navegação: somente os links relevantes -->
   <nav>
-    <a href="index.html">Calculadora</a>
     <a href="zeller.html">Congruência de Zeller</a>
     <a href="doomsday.html">Doomsday Rule</a>
   </nav>
@@ -84,19 +87,19 @@
   <div class="calculator">
     <h2>Calculadora</h2>
     <label>Dia:</label>
-    <input type="number" id="dia" min="1" max="31" value="18">
+    <input type="number" id="dia" min="1" max="31">
     
     <label>Mês:</label>
-    <input type="number" id="mes" min="1" max="12" value="2">
+    <input type="number" id="mes" min="1" max="12">
     
     <label>Ano:</label>
-    <input type="number" id="ano" min="1" value="2025">
+    <input type="number" id="ano" min="1">
     
     <button onclick="calcularDiaSemana()">Calcular</button>
     
     <h3 id="resultado"></h3>
     <p id="explicacao"></p>
-    <p><a id="linkTimeAndDate" href="#" target="_blank">Verificar no TimeAndDate</a></p>
+    <p class="small-link"><a id="linkTimeAndDate" href="#" target="_blank">Verificar no TimeAndDate</a></p>
   </div>
   
   <div class="examples">
@@ -104,8 +107,8 @@
     <ul>
       <li><strong>29/05/1453</strong> (Queda de Constantinopla) – <a href="https://pt.wikipedia.org/wiki/Queda_de_Constantinopla" target="_blank">Wikipedia</a></li>
       <li><strong>12/10/1492</strong> (Descobrimento da América) – <a href="https://pt.wikipedia.org/wiki/Descobrimento_da_Am%C3%A9rica" target="_blank">Wikipedia</a></li>
-      <li><strong>15/03/44 a.C.</strong> (Morte de Júlio César) – <a href="https://pt.wikipedia.org/wiki/J%C3%BAlio_C%C3%A9sar" target="_blank">Wikipedia</a></li>
       <li><strong>18/02/2025</strong> (Data Exemplo Recente)</li>
+      <li class="small-link"><a href="https://www.timeanddate.com/" target="_blank">Time and Date</a></li>
     </ul>
   </div>
   
@@ -124,6 +127,15 @@
   </footer>
   
   <script>
+    // Preenche os campos da calculadora com a data atual
+    window.onload = function() {
+      const hoje = new Date();
+      document.getElementById("dia").value = hoje.getDate();
+      document.getElementById("mes").value = hoje.getMonth() + 1;
+      document.getElementById("ano").value = hoje.getFullYear();
+      calcularDiaSemana();
+    };
+
     function calcularDiaSemana() {
       let dia = parseInt(document.getElementById("dia").value);
       let mes = parseInt(document.getElementById("mes").value);
@@ -137,7 +149,9 @@
           h = calcularZellerGregoriano(dia, mes, ano);
       } else if (ano === 1582 && mes === 10 && dia >= 5 && dia <= 14) {
           document.getElementById("explicacao").innerHTML = 
-              "<strong>Período inexistente:</strong> Devido à reforma do calendário gregoriano, os dias de <strong>5 a 14 de outubro de 1582</strong> não existem oficialmente. Abaixo, os cálculos são apresentados para ambos os calendários de forma hipotética.";
+              "<strong>Período inexistente:</strong> Devido à reforma do calendário gregoriano, os dias de <strong>5 a 14 de outubro de 1582</strong> não existem oficialmente. " +
+              "Veja referências: <a href='https://www.bbc.com/portuguese/geral-60496904' target='_blank'>BBC</a> e <a href='https://pt.wikipedia.org/wiki/Calend%C3%A1rio_gregoriano' target='_blank'>Wikipédia</a>.<br>" +
+              "Abaixo, os cálculos são apresentados para ambos os calendários de forma hipotética.";
           let hJuliano = calcularZellerJuliano(dia, mes, ano);
           let hGregoriano = calcularZellerGregoriano(dia, mes, ano);
           document.getElementById("resultado").innerHTML = 

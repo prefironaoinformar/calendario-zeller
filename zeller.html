@@ -30,16 +30,27 @@
       font-size: 0.8em;
       text-align: center;
     }
+    .example {
+      margin: 15px 0;
+      padding: 10px;
+      background: #e0f7fa;
+      border-radius: 5px;
+    }
+    iframe {
+      display: block;
+      margin: 10px auto;
+      max-width: 100%;
+    }
   </style>
 </head>
 <body>
   <header>
     <h1>Congruência de Zeller</h1>
-    <p>Explicação detalhada para os calendários Juliano e Gregoriano</p>
+    <p>Explicação detalhada para os calendários Gregoriano e Juliano</p>
   </header>
   
   <section>
-    <h2>Calendário Gregoriano</h2>
+    <h2>Fórmula para o Calendário Gregoriano</h2>
     <p>A fórmula é:</p>
     <pre>
 h = (q + ⌊13(m+1)/5⌋ + K + ⌊K/4⌋ + ⌊J/4⌋ + 5J) mod 7
@@ -49,45 +60,37 @@ h = (q + ⌊13(m+1)/5⌋ + K + ⌊K/4⌋ + ⌊J/4⌋ + 5J) mod 7
       <li><strong>q</strong>: dia do mês</li>
       <li><strong>m</strong>: mês (março=3, …, dezembro=12; janeiro e fevereiro são contados como 13 e 14 do ano anterior)</li>
       <li><strong>K</strong>: ano do século (ano mod 100)</li>
-      <li><strong>J</strong>: século (parte inteira do ano/100)</li>
+      <li><strong>J</strong>: século (parte inteira de ano/100)</li>
       <li><strong>h</strong>: dia da semana (0 = sábado, 1 = domingo, 2 = segunda, ..., 6 = sexta)</li>
     </ul>
     <p><strong>Referência:</strong> <a href="https://pt.wikipedia.org/wiki/Congru%C3%AAncia_de_Zeller" target="_blank">Wikipedia: Congruência de Zeller</a></p>
   </section>
   
+  <section class="example">
+    <h2>Exemplo (Gregoriano) – 20/11/2020</h2>
+    <p>Data: 20 de novembro de 2020</p>
+    <p>Como 2020 é após a reforma, usamos a fórmula acima. (Os cálculos detalhados podem ser conferidos na calculadora da página principal.)</p>
+  </section>
+  
   <section>
-    <h2>Calendário Juliano</h2>
+    <h2>Fórmula para o Calendário Juliano</h2>
     <p>A versão adaptada para o calendário Juliano é:</p>
     <pre>
 h = (q + ⌊13(m+1)/5⌋ + K + ⌊K/4⌋ + 5J) mod 7
     </pre>
-    <p>Note que a diferença é a ausência do termo ⌊J/4⌋, pois o calendário Juliano não adota as correções seculares do Gregoriano.</p>
+    <p>Observe que o termo ⌊J/4⌋ é omitido, pois o calendário Juliano não adota as correções seculares do Gregoriano.</p>
+  </section>
+  
+  <section class="example">
+    <h2>Exemplo (Juliano) – 10/03/1500</h2>
+    <p>Data: 10 de março de 1500 (antes da reforma)</p>
+    <p>Aplicando a fórmula adaptada, obtemos o dia da semana correspondente (confira na calculadora).</p>
   </section>
   
   <section>
-    <h2>Exemplo de Cálculo</h2>
-    <p>Para 18/02/2025 (no calendário Gregoriano):</p>
-    <ol>
-      <li>Ajuste: Fevereiro é tratado como 14 e o ano se torna 2024.</li>
-      <li>q = 18, m = 14, K = 2024 mod 100 = 24, J = 20.</li>
-      <li>
-        Substituindo:
-        <pre>
-h = (18 + ⌊13×15/5⌋ + 24 + ⌊24/4⌋ + ⌊20/4⌋ + 5×20) mod 7
-  = (18 + 39 + 24 + 6 + 5 + 100) mod 7
-  = 192 mod 7 = 3
-        </pre>
-      </li>
-      <li>3 corresponde a Terça-feira.</li>
-    </ol>
-  </section>
-  
-  <section>
-    <h2>Referências</h2>
-    <ul>
-      <li><a href="https://pt.wikipedia.org/wiki/Congru%C3%AAncia_de_Zeller" target="_blank">Wikipedia: Congruência de Zeller</a></li>
-      <li><a href="https://www.fourmilab.ch/documents/calendar/" target="_blank">Fourmilab's Calendar</a></li>
-    </ul>
+    <h2>Vídeo de Referência</h2>
+    <p>Abaixo, assista ao vídeo sobre a Congruência de Zeller:</p>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/sLDc3x9koGI?start=2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </section>
   
   <footer>

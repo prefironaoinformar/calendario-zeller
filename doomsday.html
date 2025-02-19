@@ -25,6 +25,17 @@
       border-radius: 5px;
       overflow-x: auto;
     }
+    .example {
+      margin: 15px 0;
+      padding: 10px;
+      background: #fff8e1;
+      border-radius: 5px;
+    }
+    iframe {
+      display: block;
+      margin: 10px auto;
+      max-width: 100%;
+    }
     footer {
       margin-top: 20px;
       font-size: 0.8em;
@@ -45,7 +56,7 @@
   
   <section>
     <h2>Doomsdays Mensais</h2>
-    <p>Os dias âncora (doomsdays) para cada mês no calendário gregoriano são os seguintes:</p>
+    <p>Os dias âncora para cada mês são:</p>
     <ul>
       <li>Janeiro: 3 (anos comuns) ou 4 (anos bissextos)</li>
       <li>Fevereiro: 28 (anos comuns) ou 29 (anos bissextos)</li>
@@ -62,34 +73,39 @@
     </ul>
   </section>
   
-  <section>
-    <h2>Algoritmo da Doomsday Rule</h2>
+  <section class="example">
+    <h2>Exemplo de Cálculo – 18/02/2025</h2>
     <ol>
-      <li><strong>Âncora do Século:</strong> Calcule usando:
+      <li><strong>Ajuste:</strong> Como fevereiro é um mês especial, em anos bissextos o doomsday é 29 e em anos comuns é 28. Para 2025, que não é bissexto, use 28 de fevereiro.</li>
+      <li><strong>Âncora do Século:</strong> Calcule usando a fórmula:
         <pre>
 S = (5 × (C mod 4) + 2) mod 7
         </pre>
-        onde C é o número do século (por exemplo, para 2000–2099, C = 20).
+        (onde C é o número do século; para 2025, C = 20).</li>
+      <li><strong>Âncora do Ano:</strong> Separe os dois últimos dígitos (YY). Calcule:
+        <pre>
+a = ⌊YY/12⌋,  b = YY mod 12,  c = ⌊b/4⌋
+Doomsday = (S + a + b + c) mod 7
+        </pre>
       </li>
-      <li><strong>Âncora do Ano:</strong> Para os dois últimos dígitos do ano (YY):
-        <ul>
-          <li>a = ⌊YY / 12⌋</li>
-          <li>b = YY mod 12</li>
-          <li>c = ⌊b / 4⌋</li>
-          <li>Doomsday do ano = (S + a + b + c) mod 7</li>
-        </ul>
-      </li>
-      <li><strong>Cálculo Final:</strong> Compare a data desejada com o doomsday mensal (conforme listado acima) e ajuste a diferença para determinar o dia da semana.</li>
+      <li><strong>Cálculo Final:</strong> Compare a data (18) com o doomsday mensal (28) para encontrar a diferença e ajustar o dia da semana.</li>
+      <li>O resultado final, conforme os cálculos detalhados na calculadora, é <strong>Terça-feira</strong>.</li>
     </ol>
   </section>
   
   <section>
-    <h2>Referências e Vídeos</h2>
+    <h2>Vídeo de Referência</h2>
+    <p>Assista ao vídeo explicativo sobre a Doomsday Rule:</p>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/714LTMNJy5M?start=146" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </section>
+  
+  <section>
+    <h2>Referências</h2>
     <ul>
       <li><a href="https://pt.wikipedia.org/wiki/Algoritmo_Doomsday" target="_blank">Wikipedia: Algoritmo Doomsday</a></li>
+      <li><a href="https://pt.wikipedia.org/wiki/Calend%C3%A1rio_gregoriano" target="_blank">Wikipedia: Calendário Gregoriano</a></li>
+      <li><a href="https://www.bbc.com/portuguese/geral-60496904" target="_blank">BBC sobre a Reforma</a></li>
       <li><a href="https://www.fourmilab.ch/documents/calendar/" target="_blank">Fourmilab's Calendar</a></li>
-      <li><a href="https://www.youtube.com/watch?v=sLDc3x9koGI&t=2s" target="_blank">Vídeo: Congruência de Zeller</a></li>
-      <li><a href="https://www.youtube.com/watch?v=714LTMNJy5M&t=146s" target="_blank">Vídeo: Doomsday Rule</a></li>
     </ul>
   </section>
   
