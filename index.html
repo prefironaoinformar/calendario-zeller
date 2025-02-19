@@ -78,7 +78,7 @@
     <p>Bem-vindo! Este site permite calcular o dia da semana utilizando a Congruência de Zeller (para os calendários Juliano e Gregoriano) e a Doomsday Rule (para o calendário Gregoriano).</p>
   </header>
   
-  <!-- Navegação: somente os links relevantes -->
+  <!-- Barra de navegação com links para as páginas de explicação -->
   <nav>
     <a href="zeller.html">Congruência de Zeller</a>
     <a href="doomsday.html">Doomsday Rule</a>
@@ -107,7 +107,7 @@
     <ul>
       <li><strong>29/05/1453</strong> (Queda de Constantinopla) – <a href="https://pt.wikipedia.org/wiki/Queda_de_Constantinopla" target="_blank">Wikipedia</a></li>
       <li><strong>12/10/1492</strong> (Descobrimento da América) – <a href="https://pt.wikipedia.org/wiki/Descobrimento_da_Am%C3%A9rica" target="_blank">Wikipedia</a></li>
-      <li><strong>18/02/2025</strong> (Data Exemplo Recente)</li>
+      <li><strong>18/02/2025</strong> (Exemplo Recente)</li>
       <li class="small-link"><a href="https://www.timeanddate.com/" target="_blank">Time and Date</a></li>
     </ul>
   </div>
@@ -127,7 +127,7 @@
   </footer>
   
   <script>
-    // Preenche os campos da calculadora com a data atual
+    // Preenche os campos da calculadora com a data atual e executa o cálculo
     window.onload = function() {
       const hoje = new Date();
       document.getElementById("dia").value = hoje.getDate();

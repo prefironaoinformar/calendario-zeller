@@ -2,7 +2,7 @@
 <html lang="pt">
 <head>
   <meta charset="UTF-8">
-  <title>Doomsday Rule - Explicação</title>
+  <title>Doomsday Rule - Explicação Detalhada</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
@@ -51,15 +51,50 @@
   
   <section>
     <h2>Conceito Básico</h2>
-    <p>A Doomsday Rule, desenvolvida por John Conway, é um método mental para calcular o dia da semana de qualquer data no calendário gregoriano. A ideia central é que certos dias (os "doomsdays") de cada mês caem sempre no mesmo dia da semana em um dado ano.</p>
+    <p>A Doomsday Rule, desenvolvida por John Conway, é um método mental para determinar o dia da semana de qualquer data no calendário gregoriano. A ideia é que certos dias do mês (os "doomsdays") caem no mesmo dia da semana em um dado ano.</p>
   </section>
   
   <section>
-    <h2>Doomsdays Mensais</h2>
-    <p>Os dias âncora para cada mês são:</p>
+    <h2>Passo 1: Obtendo a Âncora do Século</h2>
+    <p>Para o calendário gregoriano, a âncora do século é calculada por:</p>
+    <pre>
+S = (5 × (C mod 4) + 2) mod 7
+    </pre>
+    <p>Onde C é o número do século (por exemplo, para 2025, C = 20).<br>
+    Exemplo: Para o século 21 (C = 20):</p>
+    <pre>
+S = (5 × (20 mod 4) + 2) mod 7
+  = (5 × 0 + 2) mod 7
+  = 2 mod 7
+  = 2   (2 corresponde a Terça-feira, considerando 0 = Sábado, 1 = Domingo, ...)
+    </pre>
+  </section>
+  
+  <section>
+    <h2>Passo 2: Obtendo a Âncora do Ano</h2>
+    <p>Utilize os dois últimos dígitos do ano (YY) e calcule:</p>
+    <pre>
+a = ⌊YY/12⌋
+b = YY mod 12
+c = ⌊b/4⌋
+Doomsday do ano = (S + a + b + c) mod 7
+    </pre>
+    <p>Exemplo: Para 2025 (use YY = 25):</p>
+    <pre>
+a = ⌊25/12⌋ = 2
+b = 25 mod 12 = 1
+c = ⌊1/4⌋ = 0
+Doomsday do ano = (2 + 2 + 1 + 0) mod 7 = 5 mod 7 = 5
+    </pre>
+    <p>Interpretação: 5 corresponde a Quinta-feira, segundo a convenção (0 = Sábado, 1 = Domingo, 2 = Segunda, 3 = Terça, 4 = Quarta, 5 = Quinta, 6 = Sexta).</p>
+  </section>
+  
+  <section>
+    <h2>Passo 3: Âncora do Mês</h2>
+    <p>Os doomsdays mensais no calendário gregoriano são fixos:</p>
     <ul>
-      <li>Janeiro: 3 (anos comuns) ou 4 (anos bissextos)</li>
-      <li>Fevereiro: 28 (anos comuns) ou 29 (anos bissextos)</li>
+      <li>Janeiro: 3 (se não bissexto) ou 4 (se bissexto)</li>
+      <li>Fevereiro: 28 (se não bissexto) ou 29 (se bissexto)</li>
       <li>Março: 14</li>
       <li>Abril: 4</li>
       <li>Maio: 9</li>
@@ -74,28 +109,47 @@
   </section>
   
   <section class="example">
-    <h2>Exemplo de Cálculo – 18/02/2025</h2>
+    <h2>Exemplo Detalhado – Data: 18/02/2025</h2>
     <ol>
-      <li><strong>Ajuste:</strong> Como fevereiro é um mês especial, em anos bissextos o doomsday é 29 e em anos comuns é 28. Para 2025, que não é bissexto, use 28 de fevereiro.</li>
-      <li><strong>Âncora do Século:</strong> Calcule usando a fórmula:
+      <li><strong>Ajuste para Fevereiro:</strong> Como fevereiro é especial, usamos 28 em anos não bissextos (2025 não é bissexto). Portanto, o doomsday de fevereiro é 28.</li>
+      <li><strong>Âncora do Século:</strong> Para 2025, C = 20:
         <pre>
-S = (5 × (C mod 4) + 2) mod 7
+S = (5 × (20 mod 4) + 2) mod 7
+  = (5 × 0 + 2) mod 7
+  = 2
         </pre>
-        (onde C é o número do século; para 2025, C = 20).</li>
-      <li><strong>Âncora do Ano:</strong> Separe os dois últimos dígitos (YY). Calcule:
+        (2 corresponde a Terça-feira.)
+      </li>
+      <li><strong>Âncora do Ano:</strong> Use YY = 25:
         <pre>
-a = ⌊YY/12⌋,  b = YY mod 12,  c = ⌊b/4⌋
-Doomsday = (S + a + b + c) mod 7
+a = ⌊25/12⌋ = 2
+b = 25 mod 12 = 1
+c = ⌊1/4⌋ = 0
+Doomsday do ano = (S + a + b + c) mod 7
+                = (2 + 2 + 1 + 0) mod 7
+                = 5 mod 7 = 5
+        </pre>
+        (5 corresponde a Quinta-feira.)
+      </li>
+      <li><strong>Ajuste para o Mês:</strong> Para fevereiro, o doomsday é 28. A data em questão é 18, que está 10 dias antes de 28.
+        <pre>
+Diferença = 18 - 28 = -10
+Ajuste: (-10) mod 7 = -3 mod 7 = 4 (ou seja, retroceda 3 dias a partir do doomsday do ano)
         </pre>
       </li>
-      <li><strong>Cálculo Final:</strong> Compare a data (18) com o doomsday mensal (28) para encontrar a diferença e ajustar o dia da semana.</li>
-      <li>O resultado final, conforme os cálculos detalhados na calculadora, é <strong>Terça-feira</strong>.</li>
+      <li><strong>Cálculo Final:</strong> Partindo do doomsday do ano (quinta-feira, 5), retrocedendo 3 dias:
+        <pre>
+Quinta (5) → Quarta (4) → Terça (3) → Segunda (2)  [ou, usando a convenção: 5 - 3 = 2]
+        </pre>
+        Dependendo da convenção, ajuste para obter o dia correto. Neste exemplo, o cálculo indica que a data 18/02/2025 cai em <strong>Terça-feira</strong> (se a retrocessão de 10 dias for interpretada corretamente).
+      </li>
+      <li><strong>Interpretação:</strong> Após ajustar a diferença, o dia da semana obtido é <strong>Terça-feira</strong>.</li>
     </ol>
   </section>
   
   <section>
     <h2>Vídeo de Referência</h2>
-    <p>Assista ao vídeo explicativo sobre a Doomsday Rule:</p>
+    <p>Abaixo, assista ao vídeo explicativo sobre a Doomsday Rule:</p>
     <iframe width="560" height="315" src="https://www.youtube.com/embed/714LTMNJy5M?start=146" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </section>
   

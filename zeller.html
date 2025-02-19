@@ -25,11 +25,6 @@
       border-radius: 5px;
       overflow-x: auto;
     }
-    footer {
-      margin-top: 20px;
-      font-size: 0.8em;
-      text-align: center;
-    }
     .example {
       margin: 15px 0;
       padding: 10px;
@@ -41,6 +36,11 @@
       margin: 10px auto;
       max-width: 100%;
     }
+    footer {
+      margin-top: 20px;
+      font-size: 0.8em;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -50,7 +50,7 @@
   </header>
   
   <section>
-    <h2>Fórmula para o Calendário Gregoriano</h2>
+    <h2>Calendário Gregoriano</h2>
     <p>A fórmula é:</p>
     <pre>
 h = (q + ⌊13(m+1)/5⌋ + K + ⌊K/4⌋ + ⌊J/4⌋ + 5J) mod 7
@@ -58,39 +58,77 @@ h = (q + ⌊13(m+1)/5⌋ + K + ⌊K/4⌋ + ⌊J/4⌋ + 5J) mod 7
     <p>Onde:</p>
     <ul>
       <li><strong>q</strong>: dia do mês</li>
-      <li><strong>m</strong>: mês (março=3, …, dezembro=12; janeiro e fevereiro são contados como 13 e 14 do ano anterior)</li>
+      <li><strong>m</strong>: mês (março=3, …, dezembro=12; para janeiro e fevereiro, use m = 13 e 14 e subtraia 1 do ano)</li>
       <li><strong>K</strong>: ano do século (ano mod 100)</li>
-      <li><strong>J</strong>: século (parte inteira de ano/100)</li>
+      <li><strong>J</strong>: século (parte inteira do ano/100)</li>
       <li><strong>h</strong>: dia da semana (0 = sábado, 1 = domingo, 2 = segunda, ..., 6 = sexta)</li>
     </ul>
     <p><strong>Referência:</strong> <a href="https://pt.wikipedia.org/wiki/Congru%C3%AAncia_de_Zeller" target="_blank">Wikipedia: Congruência de Zeller</a></p>
-  </section>
-  
-  <section class="example">
-    <h2>Exemplo (Gregoriano) – 20/11/2020</h2>
-    <p>Data: 20 de novembro de 2020</p>
-    <p>Como 2020 é após a reforma, usamos a fórmula acima. (Os cálculos detalhados podem ser conferidos na calculadora da página principal.)</p>
+    
+    <h3>Exemplo Detalhado – Data: 20/11/2020</h3>
+    <div class="example">
+      <ol>
+        <li><strong>Ajuste:</strong> Como a data é posterior à reforma, usamos o calendário Gregoriano. Para novembro, m = 11 e o ano permanece 2020.</li>
+        <li><strong>Valores:</strong> q = 20, m = 11, ano = 2020.</li>
+        <li><strong>Calcule K e J:</strong>
+          <ul>
+            <li>K = 2020 mod 100 = 20</li>
+            <li>J = ⌊2020 / 100⌋ = 20</li>
+          </ul>
+        </li>
+        <li><strong>Substituindo na fórmula:</strong>
+          <pre>
+h = (20 + ⌊13(11+1)/5⌋ + 20 + ⌊20/4⌋ + ⌊20/4⌋ + 5×20) mod 7
+   = (20 + ⌊13×12/5⌋ + 20 + 5 + 5 + 100) mod 7
+          </pre>
+        </li>
+        <li><strong>Calculando:</strong>
+          <ul>
+            <li>⌊13×12/5⌋ = ⌊156/5⌋ = 31</li>
+            <li>Soma: 20 + 31 + 20 + 5 + 5 + 100 = 181</li>
+            <li>181 mod 7 = 181 - 7×25 = 181 - 175 = 6</li>
+          </ul>
+        </li>
+        <li><strong>Interpretação:</strong> h = 6 corresponde a <em>Sexta-feira</em>.</li>
+      </ol>
+    </div>
   </section>
   
   <section>
-    <h2>Fórmula para o Calendário Juliano</h2>
+    <h2>Calendário Juliano</h2>
     <p>A versão adaptada para o calendário Juliano é:</p>
     <pre>
 h = (q + ⌊13(m+1)/5⌋ + K + ⌊K/4⌋ + 5J) mod 7
     </pre>
-    <p>Observe que o termo ⌊J/4⌋ é omitido, pois o calendário Juliano não adota as correções seculares do Gregoriano.</p>
-  </section>
-  
-  <section class="example">
-    <h2>Exemplo (Juliano) – 10/03/1500</h2>
-    <p>Data: 10 de março de 1500 (antes da reforma)</p>
-    <p>Aplicando a fórmula adaptada, obtemos o dia da semana correspondente (confira na calculadora).</p>
-  </section>
-  
-  <section>
-    <h2>Vídeo de Referência</h2>
-    <p>Abaixo, assista ao vídeo sobre a Congruência de Zeller:</p>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/sLDc3x9koGI?start=2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <p>Observe que omitimos o termo ⌊J/4⌋.</p>
+    
+    <h3>Exemplo Detalhado – Data: 10/03/1500</h3>
+    <div class="example">
+      <ol>
+        <li><strong>Ajuste:</strong> Como março é maior que 2, usamos m = 3 e o ano permanece 1500.</li>
+        <li><strong>Valores:</strong> q = 10, m = 3, ano = 1500.</li>
+        <li><strong>Calcule K e J:</strong>
+          <ul>
+            <li>K = 1500 mod 100 = 0</li>
+            <li>J = ⌊1500 / 100⌋ = 15</li>
+          </ul>
+        </li>
+        <li><strong>Substituindo na fórmula:</strong>
+          <pre>
+h = (10 + ⌊13(3+1)/5⌋ + 0 + ⌊0/4⌋ + 5×15) mod 7
+   = (10 + ⌊13×4/5⌋ + 0 + 0 + 75) mod 7
+          </pre>
+        </li>
+        <li><strong>Calculando:</strong>
+          <ul>
+            <li>⌊13×4/5⌋ = ⌊52/5⌋ = 10</li>
+            <li>Soma: 10 + 10 + 0 + 0 + 75 = 95</li>
+            <li>95 mod 7 = 95 - 7×13 = 95 - 91 = 4</li>
+          </ul>
+        </li>
+        <li><strong>Interpretação:</strong> h = 4 corresponde a <em>Quarta-feira</em>.</li>
+      </ol>
+    </div>
   </section>
   
   <footer>
