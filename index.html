@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Dia da Semana (Juliano/Gregoriano)</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 50px; }
+        input { padding: 5px; margin: 5px; width: 80px; text-align: center; }
+        button { padding: 8px 12px; cursor: pointer; }
+        #explicacao { margin-top: 20px; font-size: 14px; color: red; }
+    </style>
+</head>
+<body>
+    <h2>Calculadora de Dia da Semana</h2>
+    
+    <label>Dia:</label>
+    <input type="number" id="dia" min="1" max="31" value="1">
+    
+    <label>Mês:</label>
+    <input type="number" id="mes" min="1" max="12" value="1">
+    
+    <label>Ano:</label>
+    <input type="number" id="ano" min="1" value="1582">
+    
+    <button onclick="calcularDiaSemana()">Calcular</button>
+    
+    <h3 id="resultado"></h3>
+    <p id="explicacao"></p>
+    <p><a id="linkTimeAndDate" href="#" target="_blank">Verificar no TimeAndDate</a></p>
+
+    <script>
+        function calcularDiaSemana() {
+            let dia = parseInt(document.getElementById("dia").value);
+            let mes = parseInt(document.getElementById("mes").value);
+            let ano = parseInt(document.getElementById("ano").value);
+            let calendario = "Juliano";
+            let h;
+
+            if (ano > 1582 || (ano === 1582 && (mes > 10 || (mes === 10 && dia >= 15)))) {
+                calendario = "Gregoriano";
+                h = calcularZellerGregoriano(dia, mes, ano);
+            } else if (ano === 1582 && mes === 10 && dia >= 5 && dia <= 14) {
+                document.getElementById("explicacao").innerHTML = 
+                    "<strong>Período inexistente:</strong> Devido à reforma do calendário Gregoriano, os dias de <strong>5 a 14 de outubro de 1582</strong> nunca existiram oficialmente. " + 
+                    "O dia 4 de outubro foi seguido diretamente pelo dia 15. No entanto, abaixo estão os cálculos hipotéticos para os dois calendários:";
+                let hJuliano = calcularZellerJuliano(dia, mes, ano);
+                let hGregoriano = calcularZellerGregoriano(dia, mes, ano);
+                document.getElementById("resultado").innerHTML = 
+                    `No <strong>calendário Juliano</strong>: ${obterDiaSemana(hJuliano)}<br>` +
+                    `No <strong>calendário Gregoriano</strong>: ${obterDiaSemana(hGregoriano)}`;
+                atualizarLinkTimeAndDate(dia, mes, ano);
+                return;
+            } else {
+                h = calcularZellerJuliano(dia, mes, ano);
+            }
+
+            document.getElementById("resultado").innerHTML = 
+                `A data <strong>${dia}/${mes}/${ano}</strong> está no <strong>calendário ${calendario}</strong> e caiu em uma <strong>${obterDiaSemana(h)}</strong>.<br>` +
+                `<a href="#" onclick="alternarCalendario(${dia}, ${mes}, ${ano})">Visualizar no outro calendário</a>`;
+
+            document.getElementById("explicacao").innerHTML = "";
+            atualizarLinkTimeAndDate(dia, mes, ano);
+        }
+
+        function calcularZellerJuliano(dia, mes, ano) {
+            if (mes < 3) {
+                mes += 12;
+                ano -= 1;
+            }
+            let q = dia, m = mes, K = ano % 100, J = Math.floor(ano / 100);
+            let h = (q + Math.floor((13 * (m + 1)) / 5) + K + Math.floor(K / 4) + 5 - J) % 7;
+            return (h + 7) % 7; // Garante que o resultado não seja negativo
+        }
+
+        function calcularZellerGregoriano(dia, mes, ano) {
+            if (mes < 3) {
+                mes += 12;
+                ano -= 1;
+            }
+            let q = dia, m = mes, K = ano % 100, J = Math.floor(ano / 100);
+            let h = (q + Math.floor((13 * (m + 1)) / 5) + K + Math.floor(K / 4) + Math.floor(J / 4) + 5 * J) % 7;
+            return (h + 7) % 7;
+        }
+
+        function obterDiaSemana(h) {
+            let diasSemana = ["Sábado", "Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira"];
+            return diasSemana[h];
+        }
+
+        function alternarCalendario(dia, mes, ano) {
+            let calendario = (ano > 1582 || (ano === 1582 && (mes > 10 || (mes === 10 && dia >= 15)))) ? "Gregoriano" : "Juliano";
+            let novoAno = ano, novoMes = mes, novoDia = dia;
+
+            if (calendario === "Gregoriano") {
+                let diferenca = Math.floor((ano - 1500) / 100) - Math.floor((ano - 1500) / 400) + 10;
+                novoDia -= diferenca;
+                if (novoDia <= 0) {
+                    novoMes -= 1;
+                    if (novoMes < 1) {
+                        novoMes = 12;
+                        novoAno -= 1;
+                    }
+                    novoDia += 30; // Aproximado, sem lidar com meses individuais
+                }
+                calendario = "Juliano";
+            } else {
+                let diferenca = Math.floor((ano - 1500) / 100) - Math.floor((ano - 1500) / 400) + 10;
+                novoDia += diferenca;
+                if (novoDia > 31) {
+                    novoMes += 1;
+                    if (novoMes > 12) {
+                        novoMes = 1;
+                        novoAno += 1;
+                    }
+                    novoDia -= 31; // Aproximado
+                }
+                calendario = "Gregoriano";
+            }
+
+            let h = (calendario === "Juliano") ? calcularZellerJuliano(novoDia, novoMes, novoAno) : calcularZellerGregoriano(novoDia, novoMes, novoAno);
+
+            document.getElementById("resultado").innerHTML = 
+                `A data equivalente no <strong>calendário ${calendario}</strong> é <strong>${novoDia}/${novoMes}/${novoAno}</strong> e caiu em uma <strong>${obterDiaSemana(h)}</strong>.`;
+            
+            atualizarLinkTimeAndDate(novoDia, novoMes, novoAno);
+        }
+
+        function atualizarLinkTimeAndDate(dia, mes, ano) {
+            let url = `https://www.timeanddate.com/calendar/?year=${ano}&month=${mes}&day=${dia}`;
+            document.getElementById("linkTimeAndDate").href = url;
+        }
+    </script>
+</body>
+</html>
