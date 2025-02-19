@@ -7,7 +7,7 @@
   <style>
     body {
       background: #e1f5fe;
-      font-family: "Comic Sans MS", cursive, sans-serif;
+      font-family: Arial, sans-serif;
       color: #01579b;
       margin: 20px;
       text-align: left;
@@ -25,6 +25,12 @@
       border-radius: 5px;
       overflow-x: auto;
     }
+    .intro {
+      margin: 15px 0;
+      padding: 10px;
+      background: #d1c4e9;
+      border-radius: 5px;
+    }
     .example {
       margin: 15px 0;
       padding: 10px;
@@ -36,6 +42,10 @@
       margin: 10px auto;
       max-width: 100%;
     }
+    .video-link {
+      text-align: center;
+      font-size: 0.9em;
+    }
     footer {
       margin-top: 20px;
       font-size: 0.8em;
@@ -46,11 +56,25 @@
 <body>
   <header>
     <h1>Congruência de Zeller</h1>
-    <p>Explicação detalhada para os calendários Gregoriano e Juliano</p>
   </header>
   
+  <div class="intro">
+    <p>
+      O algoritmo de Zeller, desenvolvido pelo matemático alemão Christian Zeller no século XIX, é um método eficiente para calcular o dia da semana de qualquer data no calendário gregoriano ou juliano. Ele se destaca por ser uma fórmula matemática direta, que evita contagens intermediárias e pode ser aplicada rapidamente, até mesmo com papel e caneta ou mentalmente com prática.
+    </p>
+    <p>
+      A essência do algoritmo está na conversão de uma data completa (dia, mês e ano) em um valor numérico que representa um dia da semana, de 0 (sábado) a 6 (sexta-feira). Ele leva em conta variações entre os meses, ajustes de ano bissexto e diferenças entre os calendários gregoriano e juliano. Para isso, faz algumas correções na numeração dos meses e no tratamento do início do ano, considerando janeiro e fevereiro como parte do ano anterior para facilitar os cálculos.
+    </p>
+    <p>
+      Uma das vantagens do método de Zeller é sua versatilidade, já que funciona para qualquer data dentro da faixa de validade dos calendários. No caso do calendário gregoriano, ele incorpora as regras modernas de anos bissextos e a reforma do Papa Gregório XIII, que corrigiu o erro acumulado do calendário juliano. Já na versão para o calendário juliano, que foi usado antes da reforma de 1582 (e ainda é empregado em algumas tradições eclesiásticas), o cálculo é ligeiramente diferente, pois esse calendário considera anos bissextos de forma mais simplificada e não tem a correção do erro acumulado ao longo dos séculos.
+    </p>
+    <p>
+      Embora atualmente existam métodos computacionais que realizam esse cálculo em milissegundos, o algoritmo de Zeller continua fascinante para entusiastas da matemática recreativa, pois demonstra como padrões ocultos no calendário podem ser traduzidos em fórmulas elegantes e eficientes. Ele também é uma excelente ferramenta para quem gosta de desafios de memorização, pois, com alguma prática, permite determinar dias da semana rapidamente sem a necessidade de tabelas ou softwares.
+    </p>
+  </div>
+  
   <section>
-    <h2>Calendário Gregoriano</h2>
+    <h2>Fórmula para o Calendário Gregoriano</h2>
     <p>A fórmula é:</p>
     <pre>
 h = (q + ⌊13(m+1)/5⌋ + K + ⌊K/4⌋ + ⌊J/4⌋ + 5J) mod 7
@@ -60,74 +84,82 @@ h = (q + ⌊13(m+1)/5⌋ + K + ⌊K/4⌋ + ⌊J/4⌋ + 5J) mod 7
       <li><strong>q</strong>: dia do mês</li>
       <li><strong>m</strong>: mês (março=3, …, dezembro=12; para janeiro e fevereiro, use m = 13 e 14 e subtraia 1 do ano)</li>
       <li><strong>K</strong>: ano do século (ano mod 100)</li>
-      <li><strong>J</strong>: século (parte inteira do ano/100)</li>
-      <li><strong>h</strong>: dia da semana (0 = sábado, 1 = domingo, 2 = segunda, ..., 6 = sexta)</li>
+      <li><strong>J</strong>: século (parte inteira de ano/100)</li>
+      <li><strong>h</strong>: dia da semana (0 = sábado, 1 = domingo, 2 = segunda, …, 6 = sexta)</li>
     </ul>
     <p><strong>Referência:</strong> <a href="https://pt.wikipedia.org/wiki/Congru%C3%AAncia_de_Zeller" target="_blank">Wikipedia: Congruência de Zeller</a></p>
     
-    <h3>Exemplo Detalhado – Data: 20/11/2020</h3>
+    <h3>Exemplo Detalhado – Data: 20/11/2020 (Gregoriano)</h3>
     <div class="example">
       <ol>
-        <li><strong>Ajuste:</strong> Como a data é posterior à reforma, usamos o calendário Gregoriano. Para novembro, m = 11 e o ano permanece 2020.</li>
+        <li><strong>Ajuste:</strong> Como a data é posterior à reforma, usamos m = 11 e o ano permanece 2020.</li>
         <li><strong>Valores:</strong> q = 20, m = 11, ano = 2020.</li>
-        <li><strong>Calcule K e J:</strong>
+        <li><strong>Cálculo de K e J:</strong>
           <ul>
             <li>K = 2020 mod 100 = 20</li>
-            <li>J = ⌊2020 / 100⌋ = 20</li>
+            <li>J = ⌊2020/100⌋ = 20</li>
           </ul>
         </li>
-        <li><strong>Substituindo na fórmula:</strong>
+        <li><strong>Substituindo:</strong>
           <pre>
-h = (20 + ⌊13(11+1)/5⌋ + 20 + ⌊20/4⌋ + ⌊20/4⌋ + 5×20) mod 7
-   = (20 + ⌊13×12/5⌋ + 20 + 5 + 5 + 100) mod 7
+h = (20 + ⌊13*(11+1)/5⌋ + 20 + ⌊20/4⌋ + ⌊20/4⌋ + 5*20) mod 7
+  = (20 + ⌊156/5⌋ + 20 + 5 + 5 + 100) mod 7
           </pre>
         </li>
-        <li><strong>Calculando:</strong>
+        <li><strong>Cálculos:</strong>
           <ul>
-            <li>⌊13×12/5⌋ = ⌊156/5⌋ = 31</li>
+            <li>⌊156/5⌋ = 31</li>
             <li>Soma: 20 + 31 + 20 + 5 + 5 + 100 = 181</li>
-            <li>181 mod 7 = 181 - 7×25 = 181 - 175 = 6</li>
+            <li>181 mod 7 = 181 - (7×25 = 175) = 6</li>
           </ul>
         </li>
-        <li><strong>Interpretação:</strong> h = 6 corresponde a <em>Sexta-feira</em>.</li>
+        <li><strong>Resultado:</strong> h = 6, que corresponde a Sexta-feira.</li>
       </ol>
     </div>
   </section>
   
   <section>
-    <h2>Calendário Juliano</h2>
+    <h2>Fórmula para o Calendário Juliano</h2>
     <p>A versão adaptada para o calendário Juliano é:</p>
     <pre>
 h = (q + ⌊13(m+1)/5⌋ + K + ⌊K/4⌋ + 5J) mod 7
     </pre>
     <p>Observe que omitimos o termo ⌊J/4⌋.</p>
     
-    <h3>Exemplo Detalhado – Data: 10/03/1500</h3>
+    <h3>Exemplo Detalhado – Data: 10/03/1500 (Juliano)</h3>
     <div class="example">
       <ol>
-        <li><strong>Ajuste:</strong> Como março é maior que 2, usamos m = 3 e o ano permanece 1500.</li>
+        <li><strong>Ajuste:</strong> Como março > 2, m = 3 e o ano permanece 1500.</li>
         <li><strong>Valores:</strong> q = 10, m = 3, ano = 1500.</li>
-        <li><strong>Calcule K e J:</strong>
+        <li><strong>Cálculo de K e J:</strong>
           <ul>
             <li>K = 1500 mod 100 = 0</li>
-            <li>J = ⌊1500 / 100⌋ = 15</li>
+            <li>J = ⌊1500/100⌋ = 15</li>
           </ul>
         </li>
-        <li><strong>Substituindo na fórmula:</strong>
+        <li><strong>Substituindo:</strong>
           <pre>
-h = (10 + ⌊13(3+1)/5⌋ + 0 + ⌊0/4⌋ + 5×15) mod 7
-   = (10 + ⌊13×4/5⌋ + 0 + 0 + 75) mod 7
+h = (10 + ⌊13*(3+1)/5⌋ + 0 + ⌊0/4⌋ + 5*15) mod 7
+  = (10 + ⌊52/5⌋ + 0 + 0 + 75) mod 7
           </pre>
         </li>
-        <li><strong>Calculando:</strong>
+        <li><strong>Cálculos:</strong>
           <ul>
-            <li>⌊13×4/5⌋ = ⌊52/5⌋ = 10</li>
+            <li>⌊52/5⌋ = 10</li>
             <li>Soma: 10 + 10 + 0 + 0 + 75 = 95</li>
-            <li>95 mod 7 = 95 - 7×13 = 95 - 91 = 4</li>
+            <li>95 mod 7 = 95 - (7×13 = 91) = 4</li>
           </ul>
         </li>
-        <li><strong>Interpretação:</strong> h = 4 corresponde a <em>Quarta-feira</em>.</li>
+        <li><strong>Resultado:</strong> h = 4, que corresponde a Quarta-feira.</li>
       </ol>
+    </div>
+  </section>
+  
+  <section>
+    <h2>Vídeo de Referência</h2>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/sLDc3x9koGI?si=nDH7ck1QS6rvuNw1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <div class="video-link">
+      <p>Se o vídeo não for carregado, acesse: <a href="https://youtu.be/sLDc3x9koGI?si=nDH7ck1QS6rvuNw1" target="_blank">https://youtu.be/sLDc3x9koGI?si=nDH7ck1QS6rvuNw1</a></p>
     </div>
   </section>
   
